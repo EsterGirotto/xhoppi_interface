@@ -245,21 +245,98 @@ footer .roupas img
 {
     width: 120px;
     height: 100px;
-    display: flex;
-    flex-direction: column;
 }
 
 footer .roupas
 {
+    display: flex;
     align-items: center;
-    justify-content: center;
     margin-left: 6%;
     margin-top: 2%;
+    gap: 20px;
 }
 
 footer .roupa-grande img
 {
-    width: 25%;
-    height: 25%;
+    width: 100%;
+    height: 100%;
 }
+<<<<<<< HEAD
 >>>>>>> bc07949 ( primeiro teste)
+=======
+
+footer .roupas-pequenas
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+footer .infos 
+{
+    margin-bottom: 85px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+}
+
+
+footer .infos h2 
+{
+    white-space: nowrap;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
+footer .infos h3 
+{
+    color: rgb(225, 96, 61);
+    font-size: 26px;
+    margin: 0;
+}
+
+
+footer .infos p 
+{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+
+footer .infos .label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+footer .infos .opcoes 
+{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+footer .infos .opcoes button 
+{
+    padding: 8px 14px;
+    border: 1px solid rgb(195, 193, 193);
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+footer .infos .comprar 
+{
+    background-color: rgb(225, 96, 61);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 160px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+>>>>>>> 64e5002 (tela de comprar produto)
