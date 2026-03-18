@@ -1,0 +1,168 @@
+body
+{
+    margin: 0;
+}
+
+header .cabecalho
+{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(225, 96, 61);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+header .cabecalho .cabecalho-logo
+{
+    width: 8%;
+    height: 60px;
+    background-color: rgb(225, 96, 61);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 89.9%;
+}
+
+header .cabecalho-logo img
+{
+    width: 70%;
+    height: 65px;
+    margin-bottom: 15px;
+}
+
+img 
+{
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+header h1
+{
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /*text-transform: uppercase;*/
+    color: rgb(255, 255, 255);
+    margin-bottom: 5px;
+}
+
+header .super-aba
+{
+    width: 100%;
+    height: 54px;
+    background-color: rgb(215, 215, 215);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 89.9%;
+}
+
+header p
+{
+    color:rgb(225, 96, 61);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+footer .roupas img
+{
+    width: 120px;
+    height: 100px;
+}
+
+footer .roupas
+{
+    display: flex;
+    align-items: center;
+    margin-left: 6%;
+    margin-top: 2%;
+    gap: 20px;
+}
+
+footer .roupa-grande img
+{
+    width: 100%;
+    height: 100%;
+}
+
+footer .roupas-pequenas
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+footer .infos 
+{
+    margin-bottom: 85px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+}
+
+
+footer .infos h2 
+{
+    white-space: nowrap;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
+footer .infos h3 
+{
+    color: rgb(225, 96, 61);
+    font-size: 26px;
+    margin: 0;
+}
+
+
+footer .infos p 
+{
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+
+footer .infos .label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+footer .infos .opcoes 
+{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+footer .infos .opcoes button 
+{
+    padding: 8px 14px;
+    border: 1px solid rgb(195, 193, 193);
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+
+footer .infos .comprar 
+{
+    background-color: rgb(225, 96, 61);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 160px;
+    margin-top: 15px;
+    cursor: pointer;
+}
