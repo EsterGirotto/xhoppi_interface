@@ -1,0 +1,147 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0;
+    background-color: rgb(225, 96, 61);
+}
+
+header .cabecalho
+{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(255, 255, 255);  
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header .cabecalho-logo
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 20%;
+}
+
+header .cabecalho-logo img
+{
+    max-height: 60px;
+    width: auto;
+    display: block;
+}
+
+header h1
+{
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(225, 96, 61);
+    margin: 0;
+}
+
+header h2
+{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    margin: 0;
+    margin-left: 10px;
+}
+
+header p
+{
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(225, 96, 61);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.container
+{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.login-box
+{
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    width: 30%;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+div.login-box h2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+div.login-box button
+{
+    background-color: rgb(225, 96, 61);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+div.login-box input
+{
+    height: 12%;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.166);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+div.login-box p
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 27%;
+}
+
+.divisor
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+div.login-box hr
+{
+    flex: 1;
+    height: 1px;
+    background-color: rgb(111, 109, 109);
+    border: none;
+}
+
+div.login-box h4
+{
+    color: rgb(111, 109, 109);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap;
+}
