@@ -7,9 +7,10 @@
 
 body
 {
-    margin: 0;
     background-color: rgb(225, 96, 61);
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 
 header .cabecalho
 {
@@ -40,18 +41,14 @@ header h1
 {
     font-size: 22px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
     color: rgb(225, 96, 61);
-    margin: 0;
 }
 
 header h2
 {
     font-size: 18px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
     color: black;
-    margin: 0;
     margin-left: 10px;
 }
 
@@ -59,89 +56,110 @@ header p
 {
     font-size: 12px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
     color: rgb(225, 96, 61);
-    margin: 0;
     white-space: nowrap;
 }
 
+
 .container
 {
-    height: 100%;
+    height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2%;
 }
+
 
 .login-box
 {
-    background-color: rgb(255, 255, 255);
-    padding: 30px;
-    width: 30%;
-    height: 350px;
+    background-color: white;
+    padding: 40px 30px;
+    width: 350px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
-div.login-box h2
+.login-box h2
 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
     text-align: center;
+    color: black;
 }
 
-div.login-box button
+
+.login-box input
 {
-    background-color: rgb(225, 96, 61);
-    color: rgb(255, 255, 255);
+    height: 45px;
     padding: 10px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     font-size: 14px;
 }
 
-div.login-box input
+
+.login-box button
 {
-    height: 12%;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.166);
+    background-color: rgb(255, 87, 51);
+    color: white;
+    padding: 12px;
+    border: 1px solid black;
     border-radius: 5px;
     font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-div.login-box p
+
+.login-box p
 {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 27%;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-top: -10px;
 }
+
 
 .divisor
 {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
-div.login-box hr
+.divisor hr
 {
     flex: 1;
-    height: 1px;
-    background-color: rgb(111, 109, 109);
     border: none;
+    height: 1px;
+    background-color: rgb(154, 153, 153);
 }
 
-div.login-box h4
+.divisor span
 {
-    color: rgb(111, 109, 109);
-    font-size: 14px;
+    font-size: 13px;
+    color: rgb(154, 153, 153);
     font-weight: bold;
-    margin: 0;
-    white-space: nowrap;
+}
+
+.redes
+{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.redes button
+{
+    flex: 1;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
