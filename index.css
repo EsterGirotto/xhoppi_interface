@@ -29,7 +29,7 @@ header .cabecalho-logo img
     height: 55px;
 }
 
-img 
+img.cabecalho-logo img
 {
     overflow-clip-margin: content-box;
     overflow: clip;
@@ -45,14 +45,18 @@ header h1
     margin-bottom: 13%;
 }
 
+header a
+{
+    margin-left: auto;
+    margin-right: 20px;
+}
+
 header h2
 {
     font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(255, 255, 255);   
-    margin-left: auto;
-    margin-right: 20px;
 }
 
 header .super-aba
@@ -75,3 +79,273 @@ header p
     margin-right: 15px;
 }
 
+.carousel-wrapper
+{
+    display: flex;
+    justify-content: center;
+    padding: 20px 16px;
+    background-color: rgb(255, 255, 255);
+}
+
+.carousel-wrapper .carousel
+{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.carousel-wrapper .carousel-item img
+{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    margin-top: 0;
+}
+
+@media (max-width: 576px)
+{
+    .carousel-wrapper .carousel-item img
+    {
+        height: 50px;
+    }
+}
+
+.imagem
+{
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.descobertas
+{
+    max-width: 1200px;
+    margin: 10px auto 30px;
+    padding: 0 16px;
+}
+
+.descobertas-titulo
+{
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(225, 96, 61);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.produtos-grid
+{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.produto-card
+{
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.produto-card:hover
+{
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+
+.produto-card img
+{
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    background: rgb(245, 245, 245);
+}
+
+.produto-nome
+{
+    font-size: 12px;
+    color: rgb(51, 51, 51);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 0 6px 0;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.produto-info
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.produto-preco
+{
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(225, 96, 61);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.produto-estoque
+{
+    font-size: 10px;
+    color: rgb(130, 130, 130);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 900px)
+{
+    .produtos-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 600px)
+{
+    .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+footer
+{
+    background-color: rgb(236, 233, 233);
+    border: 1px solid rgb(236, 233, 233);
+    padding: 40px 0 0 0;
+}
+
+.footer-container
+{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 40px 30px;
+    flex-wrap: wrap;
+}
+
+.footer-col h4
+{
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(17, 17, 17);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.footer-col ul
+{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-col ul li a
+{
+    font-size: 12px;
+    color: rgb(80, 79, 79);
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover { color: rgb(225, 96, 61); }
+
+
+.pagamento-icons
+{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.pay-tag
+{
+    font-size: 10px;
+    font-weight: bold;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    padding: 3px 6px;
+    background: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
+    white-space: nowrap;
+}
+
+.pay-tag.pix   { color: rgb(0, 189, 174); border-color: #00BDAE; }
+.pay-tag.visa  { color: rgb(26, 31, 113); border-color: #1A1F71; }
+
+.social-list li a
+{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgb(80, 79, 79);
+    text-decoration: none;
+}
+
+.social-list li a:hover { color: rgb(225, 96, 61); }
+
+
+.qr-code img
+{
+    width: 80px;
+    height: 80px;
+    margin-bottom: 12px;
+    border: 1px solid rgb(221, 221, 221);
+    padding: 4px;
+    background: rgb(255, 255, 255);
+}
+
+.app-badges
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge-btn
+{
+    display: block;
+    font-size: 11px;
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.badge-btn:hover { background: rgb(51, 51, 51); }
+
+.footer-bottom
+{
+    border-top: 1px solid rgb(236, 233, 233);
+    padding: 14px 40px;
+    text-align: center;
+}
+
+.footer-bottom hr
+{
+    width: 75%;
+    margin: 0 auto;
+    color: rgb(0, 0, 0);
+}
+
+.footer-bottom p
+{
+    margin-top: 3px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+}

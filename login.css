@@ -76,7 +76,6 @@ header p
     background-color: rgb(255, 255, 255);
     padding: 40px 30px;
     width: 350px;
-    border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
@@ -95,18 +94,17 @@ header p
     height: 45px;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
     font-size: 14px;
 }
 
 
 .login-box button
 {
+    width: 100%;
     background-color: rgb(255, 87, 51);
     color: rgb(255, 255, 255);
     padding: 12px;
     border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -152,7 +150,7 @@ header p
     gap: 10px;
 }
 
-.redes button
+.redes button 
 {
     flex: 1;
     height: 40px;

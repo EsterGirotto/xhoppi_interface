@@ -75,7 +75,6 @@ header p
     padding: 20px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(159, 159, 159);
-    border-radius: 5px;
     box-shadow: 0px 0px 3px 1px rgba(37, 37, 37, 0.3);
     display: flex;
     flex-direction: column;
@@ -108,12 +107,12 @@ header p
 
 .redefinir-senha-box button
 {
+    width: 100%;
     background-color: rgb(255, 87, 51);
     color: rgb(255, 255, 255);
     padding: 12px;
     margin-top: 6%;
     border: 2px solid rgb(0, 0, 0);
-    border-radius: 10px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -124,7 +123,6 @@ header p
     height: 45px;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
     font-size: 14px;
 }
 
