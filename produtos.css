@@ -4,13 +4,7 @@ body {
     background-color: rgb(195, 195, 195);
 }
 
-.vitrini {
-    padding: 10px;
-    margin-left: 180px;
-    width: 935px;
-    height: 700px;
-    background-color: rgb(255, 255, 255);
-}
+
 
 header .cabecalho {
     width: 100%;
@@ -109,9 +103,9 @@ header p {
     margin-left: 5px;
 }
 
+/* CORRIGIDO: era max-width: 70%, agora é 100% para ocupar toda a vitrini */
 .produtos {
-    max-width: 70%;
-
+    width: 100%;
 }
 
 .produto-descricao {
@@ -126,47 +120,49 @@ header p {
 }
 
 .produtos-titulo {
-
-
     font-size: 13px;
     font-weight: bold;
     color: rgb(225, 96, 61);
     letter-spacing: 1px;
     text-transform: uppercase;
-
-    margin-left: 410px;
-
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    text-align: center;
+    margin: 20px 0;
 }
 
 .produtos-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+    gap: 20px;
+    width: 100%;
 }
 
 .produto-card {
-    background: rgb(255, 255, 255);
-    border: 1px solid rgb(230, 230, 230);
-    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: box-shadow 0.2s;
+    font-size: 13px;
+    transition: 0.2s;
 }
 
 .produto-card:hover {
-    border-color: #e17a2c;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    border: 1px solid #ff5722;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .produto-card img {
     width: 100%;
-    height: 150px;
+    height: 140px;
     object-fit: contain;
     margin-bottom: 8px;
-    background: rgb(245, 245, 245);
+}
+
+.vitrini {
+    max-width: 1400px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
 }
 
 .produto-nome {
