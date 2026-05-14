@@ -400,3 +400,7 @@ footer
     font-size: 12px;
     color: rgb(136, 136, 136);
 }
+header .super-aba a { text-decoration: none; }
+header .super-aba p { font-size: 15px; font-weight: bold; color: rgb(255, 255, 255); white-space: nowrap; margin-left: 18px; font-family: Arial, Helvetica, sans-serif; }
+.mensagem-ok { color: green; font-weight: bold; }
+.mensagem-erro { color: rgb(225, 96, 61); font-weight: bold; }

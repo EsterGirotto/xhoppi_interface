@@ -161,3 +161,5 @@ footer .infos .comprar
     margin-top: 15px;
     cursor: pointer;
 }
+
+header .super-aba a { text-decoration: none; }
