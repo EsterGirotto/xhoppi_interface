@@ -3,14 +3,22 @@ require_once __DIR__ . '/includes/App.php';
 $mensagem = '';
 $erro = '';
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+    } else {
+        $email = '';
+    }
+    if (isset($_POST['senha'])) {
+        $senha = $_POST['senha'];
+    } else {
+        $senha = '';
+    }
     if ($email === '' || $senha === '') {
         $erro = 'Preencha e-mail e nova senha.';
-    } elseif ((new AuthService())->redefinirSenha($email, $senha)) {
+    } elseif (redefinirSenha($email, $senha)) {
         $mensagem = 'Senha redefinida. Volte para o login.';
     } else {
-        $erro = 'E-mail não encontrado.';
+        $erro = 'E-mail nÃƒÂ£o encontrado.';
     }
 }
 ?>
@@ -25,9 +33,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <input type="email" name="email" placeholder="E-mail" required />
         <input type="password" name="senha" placeholder="Nova senha" required />
         <button type="submit">Enviar</button>
-        <?php if ($mensagem !== ''): ?><small style="color: green; text-align:center;"><?= h($mensagem) ?></small><?php endif; ?>
-        <?php if ($erro !== ''): ?><small style="color: rgb(225, 96, 61); text-align:center;"><?= h($erro) ?></small><?php endif; ?>
+        <?php if ($mensagem !== ''): ?><small style="color: green; text-align:center;"><?php echo h($mensagem) ?></small><?php endif; ?>
+        <?php if ($erro !== ''): ?><small style="color: rgb(225, 96, 61); text-align:center;"><?php echo h($erro) ?></small><?php endif; ?>
       </form>
     </main>
   </body>
 </html>
+
+
+

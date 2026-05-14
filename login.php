@@ -6,14 +6,21 @@ if (!empty($_SESSION['usuario_id'])) {
     exit;
 }
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $auth = new AuthService();
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
-    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
-    if ($auth->login($email, $senha)) {
+        if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+    } else {
+        $email = '';
+    }
+    if (isset($_POST['senha'])) {
+        $senha = $_POST['senha'];
+    } else {
+        $senha = '';
+    }
+    if (loginUsuario($email, $senha)) {
         header('Location: index.php');
         exit;
     }
-    $erro = 'E-mail ou senha inválidos.';
+    $erro = 'E-mail ou senha invÃƒÂ¡lidos.';
 }
 ?>
 <!doctype html>
@@ -42,7 +49,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <input type="email" name="email" placeholder="E-mail" required />
         <input type="password" name="senha" placeholder="Senha" required />
         <button type="submit">ENTRE</button>
-        <?php if ($erro !== ''): ?><small style="color: rgb(225, 96, 61); text-align:center;"><?= h($erro) ?></small><?php endif; ?>
+        <?php if ($erro !== ''): ?><small style="color: rgb(225, 96, 61); text-align:center;"><?php echo h($erro) ?></small><?php endif; ?>
         <p><a href="redefinir_senha.php">Esqueci minha senha</a><a href="#">Fazer login com SMS</a></p>
         <div class="divisor"><hr /><span>OU</span><hr /></div>
         <div class="redes"><button type="button"><i class="fab fa-facebook-f"></i> Facebook</button><button type="button"><i class="fab fa-google"></i> Google</button><button type="button"><i class="fab fa-apple"></i> Apple</button></div>
@@ -51,3 +58,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     </main>
   </body>
 </html>
+
+
+

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/App.php';
 exigirLogin();
-$produtos = (new ProdutoRepositorio())->todos();
+$produtos = listarProdutos();
 ?>
 <html lang="pt-BR">
   <head>
@@ -15,7 +15,7 @@ $produtos = (new ProdutoRepositorio())->todos();
         <section class="cabecalho-logo"><img src="img/logo.png" /><h1>Xhopii</h1></section>
         <a href="logout.php"><h2>Sair</h2></a>
       </section>
-      <section class="super-aba"><?= menuPrincipal() ?></section>
+      <section class="super-aba"><?php echo menuPrincipal() ?></section>
     </header>
     <section class="vitrini">
       <section class="produtos">
@@ -23,11 +23,11 @@ $produtos = (new ProdutoRepositorio())->todos();
         <div class="produtos-grid">
           <?php foreach ($produtos as $produto): ?>
           <div class="produto-card">
-            <a href="xhoppi.php?id=<?= (int)$produto['id'] ?>"><img src="<?= h($produto['imagem']) ?>" alt="<?= h($produto['nome']) ?>" /></a>
-            <p class="produto-nome"><?= h($produto['nome']) ?></p>
-            <p class="produto-descricao"><b> Fabricante: </b><text class="produto-desc"><?= h($produto['marca']) ?></text></p>
-            <section class="descricao"><section><p class="label-desc"><b> DescriÃ§Ã£o: </b></section><section class="label-desc2"><text class="produto-desc"><?= h($produto['descricao']) ?></text></section></p></section>
-            <div class="produto-info"><span class="produto-preco"><?= dinheiro((float)$produto['valor']) ?></span><span class="produto-estoque"><?= (int)$produto['quantidade'] ?> disponÃ­veis</span></div>
+            <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h($produto['imagem']) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
+            <p class="produto-nome"><?php echo h($produto['nome']) ?></p>
+            <p class="produto-descricao"><b> Fabricante: </b><text class="produto-desc"><?php echo h($produto['marca']) ?></text></p>
+            <section class="descricao"><section><p class="label-desc"><b> DescriÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: </b></section><section class="label-desc2"><text class="produto-desc"><?php echo h($produto['descricao']) ?></text></section></p></section>
+            <div class="produto-info"><span class="produto-preco"><?php echo dinheiro((float)$produto['valor']) ?></span><span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> disponÃƒÆ’Ã‚Â­veis</span></div>
           </div>
           <?php endforeach; ?>
         </div>
@@ -40,9 +40,9 @@ $produtos = (new ProdutoRepositorio())->todos();
           <ul>
             <li><a href="#">Central de Ajuda</a></li>
             <li><a href="#">Como Comprar</a></li>
-            <li><a href="#">MÃ©todos de Pagamento</a></li>
+            <li><a href="#">MÃƒÆ’Ã‚Â©todos de Pagamento</a></li>
             <li><a href="#">Garantia Xhopii</a></li>
-            <li><a href="#">DevoluÃ§Ã£o e Reembolso</a></li>
+            <li><a href="#">DevoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o e Reembolso</a></li>
             <li><a href="#">Fale Conosco</a></li>
             <li><a href="#">Ouvidoria</a></li>
           </ul>
@@ -51,12 +51,12 @@ $produtos = (new ProdutoRepositorio())->todos();
         <div class="footer-col">
           <h4>SOBRE A XHOPII</h4>
           <ul>
-            <li><a href="#">Sobre NÃ³s</a></li>
-            <li><a href="#">PolÃ­ticas Xhopii</a></li>
-            <li><a href="#">PolÃ­tica de Privacidade</a></li>
+            <li><a href="#">Sobre NÃƒÆ’Ã‚Â³s</a></li>
+            <li><a href="#">PolÃƒÆ’Ã‚Â­ticas Xhopii</a></li>
+            <li><a href="#">PolÃƒÆ’Ã‚Â­tica de Privacidade</a></li>
             <li><a href="#">Programa de Aliados da Xhopii</a></li>
             <li><a href="#">Seja um Entregador Xhopii</a></li>
-            <li><a href="#">Ofertas RelÃ¢mpago</a></li>
+            <li><a href="#">Ofertas RelÃƒÆ’Ã‚Â¢mpago</a></li>
             <li><a href="#">Xhopii Blog</a></li>
             <li><a href="#">Imprensa</a></li>
           </ul>
@@ -352,10 +352,12 @@ $produtos = (new ProdutoRepositorio())->todos();
       </div>
       <div class="footer-bottom">
         <hr>
-        <p>Â© 2023 Xhopii. Todos os direitos acadÃªmicos reservados</p>
+        <p>Ãƒâ€šÃ‚Â© 2023 Xhopii. Todos os direitos acadÃƒÆ’Ã‚Âªmicos reservados</p>
       </div>
     </footer>
   </body>
 </html>
+
+
 
 

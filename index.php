@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/App.php';
-exigirLogin();
-$produtos = (new ProdutoRepositorio())->todos();
+$produtos = listarProdutos();
 ?>
 <html lang="pt-BR">
   <head>
@@ -14,17 +13,22 @@ $produtos = (new ProdutoRepositorio())->todos();
 
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
     <header>
       <section class="cabecalho">
         <section class="cabecalho-logo">
           <img src="img/logo.png" />
           <h1>Xhopii</h1>
         </section>
-        <a href="logout.php"><h2>Sair</h2></a>
+        <?php if (!empty($_SESSION['usuario_id'])): ?>
+          <a href="logout.php"><h2>Sair</h2></a>
+        <?php else: ?>
+          <a href="login.php"><h2>Login</h2></a>
+        <?php endif; ?>
       </section>
 
       <section class="super-aba">
-        <?= menuPrincipal() ?>
+        <?php echo menuPrincipal() ?>
       </section>
     </header>
 
@@ -51,340 +55,17 @@ $produtos = (new ProdutoRepositorio())->todos();
       <h3 class="descobertas-titulo">DESCOBERTAS DO DIA</h3>
       <div class="produtos-grid">
         <?php foreach ($produtos as $produto): ?>
-        <div class="produto-card">
-          <a href="xhoppi.php?id=<?= (int)$produto['id'] ?>"><img src="<?= h($produto['imagem']) ?>" alt="<?= h($produto['nome']) ?>" /></a>
-          <p class="produto-nome"><?= h($produto['nome']) ?></p>
-          <div class="produto-info">
-            <span class="produto-preco"><?= dinheiro((float)$produto['valor']) ?></span>
-            <span class="produto-estoque"><?= (int)$produto['quantidade'] ?> disponÃ­veis</span>
+          <div class="produto-card">
+            <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h($produto['imagem']) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
+            <p class="produto-nome"><?php echo h($produto['nome']) ?></p>
+            <div class="produto-info">
+              <span class="produto-preco"><?php echo dinheiro($produto['valor']) ?></span>
+              <span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> disponÃ­veis</span>
+            </div>
           </div>
-        </div>
         <?php endforeach; ?>
       </div>
     </section>
-  <footer>
-      <div class="footer-container">
-        <div class="footer-col">
-          <h4>ATENDIMENTO AO CLIENTE</h4>
-          <ul>
-            <li><a href="#">Central de Ajuda</a></li>
-            <li><a href="#">Como Comprar</a></li>
-            <li><a href="#">MÃ©todos de Pagamento</a></li>
-            <li><a href="#">Garantia Xhopii</a></li>
-            <li><a href="#">DevoluÃ§Ã£o e Reembolso</a></li>
-            <li><a href="#">Fale Conosco</a></li>
-            <li><a href="#">Ouvidoria</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>SOBRE A XHOPII</h4>
-          <ul>
-            <li><a href="#">Sobre NÃ³s</a></li>
-            <li><a href="#">PolÃ­ticas Xhopii</a></li>
-            <li><a href="#">PolÃ­tica de Privacidade</a></li>
-            <li><a href="#">Programa de Aliados da Xhopii</a></li>
-            <li><a href="#">Seja um Entregador Xhopii</a></li>
-            <li><a href="#">Ofertas RelÃ¢mpago</a></li>
-            <li><a href="#">Xhopii Blog</a></li>
-            <li><a href="#">Imprensa</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>PAGAMENTO</h4>
-          <div class="pagamento-icons">
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="60"
-                  height="35"
-                  rx="4"
-                  fill="#fff"
-                  stroke="#ddd"
-                  stroke-width="1"
-                />
-                <text
-                  x="30"
-                  y="24"
-                  font-size="13"
-                  font-weight="bold"
-                  fill="#00BDAE"
-                  text-anchor="middle"
-                  font-family="Arial"
-                >
-                  PIX
-                </text>
-              </svg>
-            </span>
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="60"
-                  height="35"
-                  rx="4"
-                  fill="#fff"
-                  stroke="#ddd"
-                  stroke-width="1"
-                />
-                <rect x="8" y="8" width="3" height="19" fill="#111" />
-                <rect x="13" y="8" width="2" height="19" fill="#111" />
-                <rect x="17" y="8" width="4" height="19" fill="#111" />
-                <rect x="23" y="8" width="2" height="19" fill="#111" />
-                <rect x="27" y="8" width="3" height="19" fill="#111" />
-                <rect x="32" y="8" width="2" height="19" fill="#111" />
-                <rect x="36" y="8" width="4" height="19" fill="#111" />
-                <rect x="42" y="8" width="2" height="19" fill="#111" />
-                <rect x="46" y="8" width="3" height="19" fill="#111" />
-                <rect x="51" y="8" width="2" height="19" fill="#111" />
-              </svg>
-            </span>
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="60" height="35" rx="4" fill="#2E77BC" />
-                <text
-                  x="30"
-                  y="15"
-                  font-size="6"
-                  font-weight="bold"
-                  fill="#fff"
-                  text-anchor="middle"
-                  font-family="Arial"
-                >
-                  AMERICAN
-                </text>
-                <text
-                  x="30"
-                  y="23"
-                  font-size="6"
-                  font-weight="bold"
-                  fill="#fff"
-                  text-anchor="middle"
-                  font-family="Arial"
-                >
-                  EXPRESS
-                </text>
-              </svg>
-            </span>
-          </div>
-          <div class="pagamento-icons">
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="60"
-                  height="35"
-                  rx="4"
-                  fill="#fff"
-                  stroke="#ddd"
-                  stroke-width="1"
-                />
-                <text
-                  x="30"
-                  y="24"
-                  font-size="16"
-                  font-weight="bold"
-                  fill="#1A1F71"
-                  text-anchor="middle"
-                  font-family="Arial"
-                  font-style="italic"
-                >
-                  VISA
-                </text>
-              </svg>
-            </span>
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="60"
-                  height="35"
-                  rx="4"
-                  fill="#fff"
-                  stroke="#ddd"
-                  stroke-width="1"
-                />
-                <circle cx="23" cy="17" r="10" fill="#EB001B" />
-                <circle cx="37" cy="17" r="10" fill="#F79E1B" />
-                <path
-                  d="M30 9.5 a10 10 0 0 1 0 15 a10 10 0 0 1 0-15z"
-                  fill="#FF5F00"
-                />
-              </svg>
-            </span>
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="60" height="35" rx="4" fill="#B3131A" />
-                <text
-                  x="30"
-                  y="22"
-                  font-size="8"
-                  font-weight="bold"
-                  fill="#fff"
-                  text-anchor="middle"
-                  font-family="Arial"
-                >
-                  hipercard
-                </text>
-              </svg>
-            </span>
-          </div>
-          <div class="pagamento-icons">
-            <span class="pay-logo">
-              <svg
-                width="38"
-                height="22"
-                viewBox="0 0 60 35"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  width="60"
-                  height="35"
-                  rx="4"
-                  fill="#fff"
-                  stroke="#ddd"
-                  stroke-width="1"
-                />
-                <circle
-                  cx="20"
-                  cy="17"
-                  r="7"
-                  fill="none"
-                  stroke="#FFD000"
-                  stroke-width="4"
-                />
-                <rect
-                  x="27"
-                  y="13"
-                  width="5"
-                  height="3"
-                  rx="1"
-                  fill="#00A4E0"
-                />
-                <rect
-                  x="27"
-                  y="19"
-                  width="5"
-                  height="3"
-                  rx="1"
-                  fill="#F15A22"
-                />
-                <text
-                  x="38"
-                  y="22"
-                  font-size="10"
-                  font-weight="bold"
-                  fill="#111"
-                  font-family="Arial"
-                >
-                  elo
-                </text>
-              </svg>
-            </span>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>SIGA-NOS</h4>
-          <ul class="social-list">
-            <li>
-              <a href="#">
-                <span
-                  class="social-icon"
-                  style="background: rgb(0, 0, 0); color: rgb(225, 225, 225)">
-                
-                  <i class="fab fa-instagram"></i>
-                </span>
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="social-icon" 
-                style="background: rgb(0, 0, 0); color: rgb(225, 225, 225)">
-                  <i class="fab fa-twitter"></i>
-                </span>
-                Twitter
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="social-icon" 
-                style="background: rgb(0, 0, 0); color: rgb(225, 225, 225)">
-                  <i class="fab fa-facebook-f"></i>
-                </span>
-                Facebook
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="social-icon" 
-                style="background: rgb(0, 0, 0); color: rgb(225, 225, 225)">
-                  <i class="fab fa-youtube"></i>
-                </span>
-                YouTube
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="social-icon" 
-                style="background: rgb(0, 0, 0); color: rgb(225, 225, 225)">
-                  <i class="fab fa-linkedin-in"></i>
-                </span>
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>ATENDIMENTO AO CLIENTE</h4>
-          <div class="qr-code">
-            <img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://xhopii.com.br"
-              alt="QR Code"
-            />
-          </div>
-          <div class="app-badges">
-            <a href="#" class="badge-btn google-play">&#9654; Google Play</a>
-            <a href="#" class="badge-btn app-store"> App Store</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <hr>
-        <p>Â© 2023 Xhopii. Todos os direitos acadÃªmicos reservados</p>
-      </div>
-    </footer>
   </body>
 </html>
-
 
