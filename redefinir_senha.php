@@ -18,7 +18,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     } elseif (redefinirSenha($email, $senha)) {
         $mensagem = 'Senha redefinida. Volte para o login.';
     } else {
-        $erro = 'E-mail nÃƒÂ£o encontrado.';
+        $erro = 'E-mail não encontrado.';
     }
 }
 ?>
@@ -33,8 +33,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <input type="email" name="email" placeholder="E-mail" required />
         <input type="password" name="senha" placeholder="Nova senha" required />
         <button type="submit">Enviar</button>
-        <?php if ($mensagem !== ''): ?><small style="color: green; text-align:center;"><?php echo h($mensagem) ?></small><?php endif; ?>
-        <?php if ($erro !== ''): ?><small style="color: rgb(225, 96, 61); text-align:center;"><?php echo h($erro) ?></small><?php endif; ?>
+        <?php if ($mensagem !== '') { ?><small style="color: green; text-align:center;"><?php echo h($mensagem) ?></small><?php } ?>
+        <?php if ($erro !== '') { ?><small style="color: rgb(225, 96, 61); text-align:center;"><?php echo h($erro) ?></small><?php } ?>
       </form>
     </main>
   </body>

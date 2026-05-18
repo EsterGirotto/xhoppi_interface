@@ -29,11 +29,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     </header>
     <main class="container">
         <form class="login-box" method="post">
-            <h2>Cadastrar Cupons</h2><input type="text" name="codigo" placeholder="CÃ³digo" required /><input type="text"
-                name="descricao" placeholder="DescriÃ§Ã£o" required /><input type="number" step="0.01" name="desconto"
+            <h2>Cadastrar Cupons</h2><input type="text" name="codigo" placeholder="Código" required /><input type="text"
+                name="descricao" placeholder="Descrição" required /><input type="number" step="0.01" name="desconto"
                 placeholder="Desconto %" required /><input type="date" name="validade" required /><button
-                type="submit">CADASTRAR</button><?php if ($mensagem): ?><small
-                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php endif; ?>
+                type="submit">CADASTRAR</button><?php if ($mensagem) { ?><small
+                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php } ?>
         </form>
     </main>
 </body>

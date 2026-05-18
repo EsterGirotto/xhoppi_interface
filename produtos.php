@@ -21,15 +21,15 @@ $produtos = listarProdutos();
       <section class="produtos">
         <h3 class="produtos-titulo">Produtos</h3>
         <div class="produtos-grid">
-          <?php foreach ($produtos as $produto): ?>
+          <?php foreach ($produtos as $produto) { ?>
           <div class="produto-card">
             <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h($produto['imagem']) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
             <p class="produto-nome"><?php echo h($produto['nome']) ?></p>
             <p class="produto-descricao"><b> Fabricante: </b><text class="produto-desc"><?php echo h($produto['marca']) ?></text></p>
-            <section class="descricao"><section><p class="label-desc"><b> DescriÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: </b></section><section class="label-desc2"><text class="produto-desc"><?php echo h($produto['descricao']) ?></text></section></p></section>
-            <div class="produto-info"><span class="produto-preco"><?php echo dinheiro((float)$produto['valor']) ?></span><span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> disponÃƒÆ’Ã‚Â­veis</span></div>
+            <section class="descricao"><section><p class="label-desc"><b> Descrição: </b></section><section class="label-desc2"><text class="produto-desc"><?php echo h($produto['descricao']) ?></text></section></p></section>
+            <div class="produto-info"><span class="produto-preco"><?php echo dinheiro((float)$produto['valor']) ?></span><span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> dispon­veis</span></div>
           </div>
-          <?php endforeach; ?>
+          <?php } ?>
         </div>
       </section>
     </section>
@@ -40,9 +40,9 @@ $produtos = listarProdutos();
           <ul>
             <li><a href="#">Central de Ajuda</a></li>
             <li><a href="#">Como Comprar</a></li>
-            <li><a href="#">MÃƒÆ’Ã‚Â©todos de Pagamento</a></li>
+            <li><a href="#">Métodos de Pagamento</a></li>
             <li><a href="#">Garantia Xhopii</a></li>
-            <li><a href="#">DevoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o e Reembolso</a></li>
+            <li><a href="#">Devolução e Reembolso</a></li>
             <li><a href="#">Fale Conosco</a></li>
             <li><a href="#">Ouvidoria</a></li>
           </ul>
@@ -51,12 +51,12 @@ $produtos = listarProdutos();
         <div class="footer-col">
           <h4>SOBRE A XHOPII</h4>
           <ul>
-            <li><a href="#">Sobre NÃƒÆ’Ã‚Â³s</a></li>
-            <li><a href="#">PolÃƒÆ’Ã‚Â­ticas Xhopii</a></li>
-            <li><a href="#">PolÃƒÆ’Ã‚Â­tica de Privacidade</a></li>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Políticas Xhopii</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
             <li><a href="#">Programa de Aliados da Xhopii</a></li>
             <li><a href="#">Seja um Entregador Xhopii</a></li>
-            <li><a href="#">Ofertas RelÃƒÆ’Ã‚Â¢mpago</a></li>
+            <li><a href="#">Ofertas Relâmpago</a></li>
             <li><a href="#">Xhopii Blog</a></li>
             <li><a href="#">Imprensa</a></li>
           </ul>
@@ -352,7 +352,7 @@ $produtos = listarProdutos();
       </div>
       <div class="footer-bottom">
         <hr>
-        <p>Ãƒâ€šÃ‚Â© 2023 Xhopii. Todos os direitos acadÃƒÆ’Ã‚Âªmicos reservados</p>
+        <p>© 2023 Xhopii. Todos os direitos acadêmicos reservados</p>
       </div>
     </footer>
   </body>

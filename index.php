@@ -20,11 +20,11 @@ $produtos = listarProdutos();
           <img src="img/logo.png" />
           <h1>Xhopii</h1>
         </section>
-        <?php if (!empty($_SESSION['usuario_id'])): ?>
+        <?php if (!empty($_SESSION['usuario_id'])) { ?>
           <a href="logout.php"><h2>Sair</h2></a>
-        <?php else: ?>
+        <?php } else { ?>
           <a href="login.php"><h2>Login</h2></a>
-        <?php endif; ?>
+        <?php } ?>
       </section>
 
       <section class="super-aba">
@@ -54,16 +54,16 @@ $produtos = listarProdutos();
     <section class="descobertas">
       <h3 class="descobertas-titulo">DESCOBERTAS DO DIA</h3>
       <div class="produtos-grid">
-        <?php foreach ($produtos as $produto): ?>
+        <?php foreach ($produtos as $produto) { ?>
           <div class="produto-card">
             <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h($produto['imagem']) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
             <p class="produto-nome"><?php echo h($produto['nome']) ?></p>
             <div class="produto-info">
               <span class="produto-preco"><?php echo dinheiro($produto['valor']) ?></span>
-              <span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> disponÃ­veis</span>
+              <span class="produto-estoque"><?php echo (int)$produto['quantidade'] ?> disponíveis</span>
             </div>
           </div>
-        <?php endforeach; ?>
+        <?php } ?>
       </div>
     </section>
   </body>

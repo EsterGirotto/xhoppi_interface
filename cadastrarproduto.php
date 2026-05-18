@@ -31,15 +31,15 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <form class="login-box" method="post">
             <h2>Cadastrar Produto</h2><input type="text" name="nome" placeholder="Nome" required /><input type="text"
                 name="marca" placeholder="Fabricante" required /><input type="text" name="descricao"
-                placeholder="DescriÃ§Ã£o" required /><input type="number" step="0.01" name="valor" placeholder="Valor"
+                placeholder="Descrição" required /><input type="number" step="0.01" name="valor" placeholder="Valor"
                 required /><input type="number" name="quantidade" placeholder="Quantidade" required /><input type="text"
                 name="imagem" placeholder="Imagem ex: img/produto1.png" /><small>
                 <h3 id="Foto"><b>Selecionar foto de perfil</b></h3>
             </small>
             <div class="upload-container"><label class="upload-label">Escolher arquivo</label><span
                     id="file-name">Nenhum arquivo escolhido</span><input type="file" id="file"></div><button
-                type="submit">CADASTRAR</button><?php if ($mensagem): ?><small
-                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php endif; ?>
+                type="submit">CADASTRAR</button><?php if ($mensagem) { ?><small
+                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php } ?>
         </form>
     </main>
 </body>

@@ -4,7 +4,7 @@ $mensagem = '';
 $erro = '';
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     cadastrarCliente($_POST);
-    $mensagem = 'Cliente cadastrado com sucesso. FaÃ§a login para acessar a home.';
+    $mensagem = 'Cliente cadastrado com sucesso. Faça login para acessar a home.';
 }
 ?>
 <!doctype html>
@@ -21,11 +21,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <section class="cabecalho">
             <section class="cabecalho-logo"><img src="img/logo.png" />
                 <h1>Xhopii</h1>
-            </section><?php if (!empty($_SESSION['usuario_id'])): ?><a href="logout.php"><b>
+            </section><?php if (!empty($_SESSION['usuario_id'])) { ?><a href="logout.php"><b>
                         <h4>Sair</h4>
-                    </b></a><?php else: ?><a href="login.php"><b>
+                    </b></a><?php } else { ?><a href="login.php"><b>
                         <h4>Login</h4>
-                    </b></a><?php endif; ?>
+                    </b></a><?php } ?>
         </section>
         <section class="super-aba"><?php echo menuPrincipal() ?></section>
     </header>
@@ -40,9 +40,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             </small>
             <div class="upload-container"><label class="upload-label">Escolher arquivo</label><span
                     id="file-name">Nenhum arquivo escolhido</span><input type="file" id="file"></div><button
-                type="submit">CADASTRAR</button><?php if ($mensagem): ?><small
-                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php endif; ?><?php if ($erro): ?><small
-                    class="mensagem-erro"><?php echo h($erro) ?></small><?php endif; ?>
+                type="submit">CADASTRAR</button><?php if ($mensagem) { ?><small
+                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php } ?><?php if ($erro) { ?><small
+                    class="mensagem-erro"><?php echo h($erro) ?></small><?php } ?>
         </form>
     </main>
 </body>
