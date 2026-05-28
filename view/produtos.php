@@ -1,18 +1,19 @@
 <?php
-require_once __DIR__ . '/includes/App.php';
-exigirLogin();
-$produtos = listarProdutos();
+require_once __DIR__ . '/../controller/Controlador.php';
+$controlador = new Controlador();
+$controlador->exigirLogin();
+$produtos = $controlador->listarProdutos();
 ?>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <title>Xhopii.com</title>
-    <link rel="stylesheet" href="produtos.css" />
+    <link rel="stylesheet" href="../assets/css/produtos.css" />
   </head>
   <body>
     <header>
       <section class="cabecalho">
-        <section class="cabecalho-logo"><img src="img/logo.png" /><h1>Xhopii</h1></section>
+        <section class="cabecalho-logo"><img src="../assets/img/logo.png" /><h1>Xhopii</h1></section>
         <a href="logout.php"><h2>Sair</h2></a>
       </section>
       <section class="super-aba"><?php echo menuPrincipal() ?></section>
@@ -23,7 +24,7 @@ $produtos = listarProdutos();
         <div class="produtos-grid">
           <?php foreach ($produtos as $produto) { ?>
           <div class="produto-card">
-            <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h($produto['imagem']) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
+            <a href="xhoppi.php?id=<?php echo (int)$produto['id'] ?>"><img src="<?php echo h(caminhoImagem($produto['imagem'])) ?>" alt="<?php echo h($produto['nome']) ?>" /></a>
             <p class="produto-nome"><?php echo h($produto['nome']) ?></p>
             <p class="produto-descricao"><b> Fabricante: </b><text class="produto-desc"><?php echo h($produto['marca']) ?></text></p>
             <section class="descricao"><section><p class="label-desc"><b> Descrição: </b></section><section class="label-desc2"><text class="produto-desc"><?php echo h($produto['descricao']) ?></text></section></p></section>

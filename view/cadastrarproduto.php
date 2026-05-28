@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/includes/App.php';
-exigirLogin();
+require_once __DIR__ . '/../controller/Controlador.php';
+$controlador = new Controlador();
+$controlador->exigirLogin();
 $mensagem = '';
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    cadastrarProduto($_POST);
+if (isset($_GET['mensagem'])) {
     $mensagem = 'Produto cadastrado com sucesso.';
 }
 ?>
@@ -13,13 +13,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 <head>
     <meta charset="UTF-8" />
     <title>Cadastrar Produto Xhoppi</title>
-    <link rel="stylesheet" href="cadastrocliente.css" />
+    <link rel="stylesheet" href="../assets/css/cadastrocliente.css" />
 </head>
 
 <body>
     <header>
         <section class="cabecalho">
-            <section class="cabecalho-logo"><img src="img/logo.png" />
+            <section class="cabecalho-logo"><img src="../assets/img/logo.png" />
                 <h1>Xhopii</h1>
             </section><a href="logout.php"><b>
                     <h4>Sair</h4>
@@ -28,7 +28,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <section class="super-aba"><?php echo menuPrincipal() ?></section>
     </header>
     <main class="container">
-        <form class="login-box" method="post">
+        <form class="login-box" method="post" action="../processamento/processamento.php">
             <h2>Cadastrar Produto</h2><input type="text" name="nome" placeholder="Nome" required /><input type="text"
                 name="marca" placeholder="Fabricante" required /><input type="text" name="descricao"
                 placeholder="Descrição" required /><input type="number" step="0.01" name="valor" placeholder="Valor"

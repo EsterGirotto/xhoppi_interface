@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/includes/App.php';
-exigirLogin();
+require_once __DIR__ . '/../controller/Controlador.php';
+$controlador = new Controlador();
+$controlador->exigirLogin();
 
 if (isset($_GET['id'])) {
     $idProduto = $_GET['id'];
@@ -8,8 +9,8 @@ if (isset($_GET['id'])) {
     $idProduto = 1;
 }
 
-$produto = buscarProduto((int)$idProduto);
-$todos = listarProdutos();
+$produto = $controlador->buscarProduto((int)$idProduto);
+$todos = $controlador->listarProdutos();
 
 if (!$produto) {
     if (count($todos) > 0) {
@@ -36,13 +37,13 @@ if ($produto) {
 <head>
     <meta charset="UTF-8">
     <title>xhoppi.com</title>
-    <link rel="stylesheet" href="xhoppi.css">
+    <link rel="stylesheet" href="../assets/css/xhoppi.css">
 </head>
 <body>
     <header>
         <section class="cabecalho">
             <section class="cabecalho-logo">
-                <img src="img/logo.png">
+                <img src="../assets/img/logo.png">
                 <h1>Xhopii</h1>
             </section>
         </section>
@@ -52,15 +53,15 @@ if ($produto) {
     <footer>
         <section class="roupas">
             <div class="roupas-pequenas">
-                <img src="img/produto1.png">
-                <img src="img/produto2.png">
-                <img src="img/produto3.png">
-                <img src="img/produto4.png">
-                <img src="img/produto5.png">
+                <img src="../assets/img/produto1.png">
+                <img src="../assets/img/produto2.png">
+                <img src="../assets/img/produto3.png">
+                <img src="../assets/img/produto4.png">
+                <img src="../assets/img/produto5.png">
             </div>
 
             <div class="roupa-grande">
-                <img src="<?php echo h($imagemProduto); ?>">
+                <img src="<?php echo h(caminhoImagem($imagemProduto)); ?>">
             </div>
 
             <div class="infos">

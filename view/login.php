@@ -1,26 +1,13 @@
 <?php
-require_once __DIR__ . '/includes/App.php';
+session_start();
+require_once __DIR__ . '/../controller/Controlador.php';
 $erro = '';
 if (!empty($_SESSION['usuario_id'])) {
     header('Location: index.php');
     exit;
 }
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-    } else {
-        $email = '';
-    }
-    if (isset($_POST['senha'])) {
-        $senha = $_POST['senha'];
-    } else {
-        $senha = '';
-    }
-    if (loginUsuario($email, $senha)) {
-        header('Location: index.php');
-        exit;
-    }
-    $erro = 'E-mail ou senha inválidos.';
+if (isset($_GET['erro'])) {
+    $erro = 'E-mail ou senha invalidos.';
 }
 ?>
 <!doctype html>
@@ -28,14 +15,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
   <head>
     <meta charset="UTF-8" />
     <title>Login Xhoppi</title>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   </head>
   <body>
     <header>
       <section class="cabecalho">
         <section class="cabecalho-logo">
-          <img src="img/logo.png" />
+          <img src="../assets/img/logo.png" />
           <h1>Xhopii</h1>
           <h2>Entre</h2>
         </section>
@@ -44,7 +31,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     </header>
 
     <main class="container">
-      <form class="login-box" method="post" action="login.php">
+      <form class="login-box" method="post" action="../processamento/processamento.php">
+        <input type="hidden" name="acao" value="login" />
         <h2>Login</h2>
         <input type="email" name="email" placeholder="E-mail" required />
         <input type="password" name="senha" placeholder="Senha" required />
@@ -58,6 +46,3 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     </main>
   </body>
 </html>
-
-
-
