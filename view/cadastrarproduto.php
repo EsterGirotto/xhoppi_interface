@@ -13,7 +13,7 @@ if (isset($_GET['mensagem'])) {
 <head>
     <meta charset="UTF-8" />
     <title>Cadastrar Produto Xhoppi</title>
-    <link rel="stylesheet" href="../assets/css/cadastrocliente.css" />
+    <link rel="stylesheet" href="../assets/css/cadastrarproduto.css" />
 </head>
 
 <body>
