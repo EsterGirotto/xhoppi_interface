@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../controller/Controlador.php';
+require_once __DIR__ . '/funcoes.php';
 $controlador = new Controlador();
 $controlador->exigirLogin();
 $linhas = $controlador->listarRegistros('funcionarios');

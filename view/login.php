@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../controller/Controlador.php';
+require_once __DIR__ . '/funcoes.php';
 $erro = '';
 if (!empty($_SESSION['usuario_id'])) {
     header('Location: index.php');
