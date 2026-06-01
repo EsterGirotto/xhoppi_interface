@@ -1,22 +1,37 @@
 <?php
+
 class Loja
 {
-    private $nome;
-    private $cnpj;
-    private $endereco;
-    private $telefone;
+    // Atributos
+    protected $nome;
+    protected $cnpj;
+    protected $endereco;
+    protected $telefone;
 
-    public function __construct($nome, $cnpj, $endereco, $telefone)
+    // Construtor
+    public function __construct($Nome, $Cnpj, $Endereco, $Telefone)
     {
-        $this->nome = $nome;
-        $this->cnpj = $cnpj;
-        $this->endereco = $endereco;
-        $this->telefone = $telefone;
+        $this->nome = $Nome;
+        $this->cnpj = $Cnpj;
+        $this->endereco = $Endereco;
+        $this->telefone = $Telefone;
     }
 
-    public function getNome() { return $this->nome; }
-    public function getCnpj() { return $this->cnpj; }
-    public function getEndereco() { return $this->endereco; }
-    public function getTelefone() { return $this->telefone; }
+    // Getter e Setter
+    public function get_Nome() { return $this->nome; }
+    public function set_Nome($Nome) { $this->nome = $Nome; }
+    public function get_Cnpj() { return $this->cnpj; }
+    public function set_Cnpj($Cnpj) { $this->cnpj = $Cnpj; }
+    public function get_Endereco() { return $this->endereco; }
+    public function set_Endereco($Endereco) { $this->endereco = $Endereco; }
+    public function get_Telefone() { return $this->telefone; }
+    public function set_Telefone($Telefone) { $this->telefone = $Telefone; }
+
+    // Metodos
+    public function alterarEndereco($NovoEndereco)
+    {
+        $this->endereco = $NovoEndereco;
+    }
 }
+
 ?>

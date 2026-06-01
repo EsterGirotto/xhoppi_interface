@@ -63,9 +63,29 @@ CREATE TABLE IF NOT EXISTS cupons (
 
 DELETE FROM usuarios WHERE email = 'funcionario@xhopii.com';
 DELETE FROM funcionarios WHERE email = 'funcionario@xhopii.com';
+DELETE FROM usuarios WHERE email = 'admin@xhopii.com';
+DELETE FROM produtos;
 
 INSERT INTO funcionarios (nome, sobrenome, cpf, data_nascimento, telefone, cargo, salario, email, senha)
 VALUES ('Funcionario', 'Teste', '12345678900', '2000-01-01', '18999999999', 'Atendente', 1800.00, 'funcionario@xhopii.com', '123456');
 
 INSERT INTO usuarios (nome, email, senha, tipo)
 VALUES ('Funcionario Teste', 'funcionario@xhopii.com', '123456', 'funcionario');
+
+INSERT INTO usuarios (nome, email, senha, tipo)
+VALUES ('Administrador Xhopii', 'admin@xhopii.com', '123456', 'funcionario');
+
+INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto1.png');
+
+INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto2.png');
+
+INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto3.png');
+
+INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto4.png');
+
+INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto5.png');

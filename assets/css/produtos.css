@@ -349,6 +349,46 @@ header .super-aba a:hover
     text-decoration: none;
 }
 
+.tabela-dados
+{
+    width: 100%;
+    border-collapse: collapse;
+    background: rgb(255, 255, 255);
+}
+
+.tabela-dados th,
+.tabela-dados td
+{
+    padding: 12px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    text-align: left;
+}
+
+.tabela-dados th
+{
+    color: rgb(225, 96, 61);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+header .super-aba
+{
+    min-height: 54px;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px)
+{
+    .tabela-dados
+    {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
 header .super-aba
 {
     justify-content: center;

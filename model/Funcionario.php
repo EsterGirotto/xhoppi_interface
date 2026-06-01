@@ -1,37 +1,58 @@
 <?php
+
 class Funcionario
 {
-    private $nome;
-    private $sobrenome;
-    private $cpf;
-    private $dataNascimento;
-    private $telefone;
-    private $email;
-    private $senha;
-    private $cargo;
-    private $salario;
+    // Atributos
+    protected $nome;
+    protected $sobrenome;
+    protected $cpf;
+    protected $dataNascimento;
+    protected $telefone;
+    protected $email;
+    protected $senha;
+    protected $cargo;
+    protected $salario;
 
-    public function __construct($nome, $sobrenome, $cpf, $dataNascimento, $telefone, $email, $senha, $cargo, $salario)
+    // Construtor
+    public function __construct($Nome, $Sobrenome, $Cpf, $DataNascimento, $Telefone, $Email, $Senha, $Cargo, $Salario)
     {
-        $this->nome = $nome;
-        $this->sobrenome = $sobrenome;
-        $this->cpf = $cpf;
-        $this->dataNascimento = $dataNascimento;
-        $this->telefone = $telefone;
-        $this->email = $email;
-        $this->senha = $senha;
-        $this->cargo = $cargo;
-        $this->salario = $salario;
+        $this->nome = $Nome;
+        $this->sobrenome = $Sobrenome;
+        $this->cpf = $Cpf;
+        $this->dataNascimento = $DataNascimento;
+        $this->telefone = $Telefone;
+        $this->email = $Email;
+        $this->senha = $Senha;
+        $this->cargo = $Cargo;
+        $this->salario = $Salario;
     }
 
-    public function getNome() { return $this->nome; }
-    public function getSobrenome() { return $this->sobrenome; }
-    public function getCpf() { return $this->cpf; }
-    public function getDataNascimento() { return $this->dataNascimento; }
-    public function getTelefone() { return $this->telefone; }
-    public function getEmail() { return $this->email; }
-    public function getSenha() { return $this->senha; }
-    public function getCargo() { return $this->cargo; }
-    public function getSalario() { return $this->salario; }
+    // Getter e Setter
+    public function get_Nome() { return $this->nome; }
+    public function set_Nome($Nome) { $this->nome = $Nome; }
+    public function get_Sobrenome() { return $this->sobrenome; }
+    public function set_Sobrenome($Sobrenome) { $this->sobrenome = $Sobrenome; }
+    public function get_Cpf() { return $this->cpf; }
+    public function set_Cpf($Cpf) { $this->cpf = $Cpf; }
+    public function get_DataNascimento() { return $this->dataNascimento; }
+    public function set_DataNascimento($DataNascimento) { $this->dataNascimento = $DataNascimento; }
+    public function get_Telefone() { return $this->telefone; }
+    public function set_Telefone($Telefone) { $this->telefone = $Telefone; }
+    public function get_Email() { return $this->email; }
+    public function set_Email($Email) { $this->email = $Email; }
+    public function get_Senha() { return $this->senha; }
+    public function set_Senha($Senha) { $this->senha = $Senha; }
+    public function get_Cargo() { return $this->cargo; }
+    public function set_Cargo($Cargo) { $this->cargo = $Cargo; }
+    public function get_Salario() { return $this->salario; }
+    public function set_Salario($Salario) { $this->salario = $Salario; }
+
+    // Metodos
+    public function aplicarAumento($Percentual)
+    {
+        $valorAumento = ($this->salario * $Percentual) / 100;
+        $this->salario = $this->salario + $valorAumento;
+    }
 }
+
 ?>

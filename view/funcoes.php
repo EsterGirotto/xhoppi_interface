@@ -38,4 +38,21 @@ function menuPrincipal()
         <p><a href="cupons.php">Ver Cupons</a></p>';
 }
 
+function cabecalhoPrincipal($autenticado = true)
+{
+    $url = $autenticado ? 'logout.php' : 'login.php';
+    $texto = $autenticado ? 'Sair' : 'Login';
+
+    return '<header>
+        <section class="cabecalho">
+            <section class="cabecalho-logo">
+                <img src="../assets/img/logo.png">
+                <h1>Xhopii</h1>
+            </section>
+            <a href="' . $url . '"><h2>' . $texto . '</h2></a>
+        </section>
+        <section class="super-aba">' . menuPrincipal() . '</section>
+    </header>';
+}
+
 ?>

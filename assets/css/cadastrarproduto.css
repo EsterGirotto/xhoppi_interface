@@ -390,6 +390,23 @@ header .super-aba a:hover
     text-decoration: none;
 }
 
+.mensagem-ok,
+.mensagem-erro
+{
+    display: block;
+    text-align: center;
+}
+
+.mensagem-ok { color: rgb(33, 135, 74); }
+.mensagem-erro { color: rgb(225, 96, 61); }
+
+header .super-aba
+{
+    min-height: 54px;
+    height: auto;
+    flex-wrap: wrap;
+}
+
 header .super-aba
 {
     justify-content: center;

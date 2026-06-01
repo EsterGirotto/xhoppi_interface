@@ -3,48 +3,29 @@ require_once __DIR__ . '/../controller/Controlador.php';
 require_once __DIR__ . '/funcoes.php';
 $controlador = new Controlador();
 $controlador->exigirLogin();
-$mensagem = '';
-if (isset($_GET['mensagem'])) {
-    $mensagem = 'Funcionário cadastrado com sucesso.';
-}
+$mensagem = isset($_GET['mensagem']) ? 'Funcionario cadastrado com sucesso.' : '';
 ?>
 <!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8" />
-    <title>Cadastrar Funcionário Xhoppi</title>
-    <link rel="stylesheet" href="../assets/css/cadastrofuncionario.css" />
-</head>
-
+<head><meta charset="UTF-8"><title>Cadastrar Funcionario Xhoppi</title><link rel="stylesheet" href="../assets/css/cadastrofuncionario.css"><link rel="stylesheet" href="../assets/css/rodape.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
 <body>
-    <header>
-        <section class="cabecalho">
-            <section class="cabecalho-logo"><img src="../assets/img/logo.png" />
-                <h1>Xhopii</h1>
-            </section><a href="logout.php"><b>
-                    <h4>Sair</h4>
-                </b></a>
-        </section>
-        <section class="super-aba"><?php echo menuPrincipal() ?></section>
-    </header>
-    <main class="container">
-        <form class="login-box" method="post" action="../processamento/processamento.php">
-            <h2>Cadastrar Funcionário</h2><input type="text" name="nome" placeholder="Nome" required /><input
-                type="text" name="sobrenome" placeholder="Sobrenome" required /><input type="number" name="cpf"
-                placeholder="CPF" required /><input type="date" name="data_nascimento" required /><input type="number"
-                name="telefone" placeholder="Telefone" required /><input type="text" name="cargo"
-                placeholder="Cargo / Função" required /><input type="number" step="0.01" name="salario"
-                placeholder="Salário" required /><input type="email" name="email" placeholder="E-mail" required /><input
-                type="password" name="senha" placeholder="Senha" required /><small>
-                <h3 id="Foto"><b>Selecionar foto de perfil</b></h3>
-            </small>
-            <div class="upload-container"><label class="upload-label">Escolher arquivo</label><span
-                    id="file-name">Nenhum arquivo escolhido</span><input type="file" id="file"></div><button
-                type="submit">CADASTRAR</button><?php if ($mensagem) { ?><small
-                    class="mensagem-ok"><?php echo h($mensagem) ?></small><?php } ?>
-        </form>
-    </main>
+  <?php echo cabecalhoPrincipal() ?>
+  <main class="container">
+    <form class="login-box" method="post" action="../processamento/processamento.php">
+      <h2>Cadastrar Funcionario</h2>
+      <input type="text" name="inputNomeFunc" placeholder="Nome" required>
+      <input type="text" name="inputSobrenomeFunc" placeholder="Sobrenome" required>
+      <input type="number" name="inputCPFFunc" placeholder="CPF" required>
+      <input type="date" name="inputDataNascFunc" required>
+      <input type="number" name="inputTelefoneFunc" placeholder="Telefone" required>
+      <input type="text" name="inputCargoFunc" placeholder="Cargo / Funcao" required>
+      <input type="number" step="0.01" name="inputSalarioFunc" placeholder="Salario" required>
+      <input type="email" name="inputEmailFunc" placeholder="E-mail" required>
+      <input type="password" name="inputSenhaFunc" placeholder="Senha" required>
+      <button type="submit">CADASTRAR</button>
+      <?php if ($mensagem) { ?><small class="mensagem-ok"><?php echo h($mensagem) ?></small><?php } ?>
+    </form>
+  </main>
+  <?php require __DIR__ . '/rodape.php'; ?>
 </body>
-
 </html>

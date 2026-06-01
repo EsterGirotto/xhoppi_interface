@@ -6,239 +6,165 @@ class BancoDeDados
     private $usuario;
     private $senha;
     private $banco;
-    private $conexao;
 
-    public function __construct($host = 'localhost', $usuario = 'root', $senha = '', $banco = 'xhopii_integrado')
+    public function __construct($host, $usuario, $senha, $banco)
     {
         $this->host = $host;
         $this->usuario = $usuario;
         $this->senha = $senha;
         $this->banco = $banco;
-        $this->conexao = null;
     }
 
     public function conectarBD()
     {
-        if ($this->conexao != null) {
-            return $this->conexao;
-        }
+        $conexao = mysqli_connect($this->host, $this->usuario, $this->senha, $this->banco);
 
-        $this->conexao = mysqli_connect($this->host, $this->usuario, $this->senha);
-
-        if (!$this->conexao) {
+        if (!$conexao) {
             die('Erro ao conectar no banco de dados.');
         }
 
-        mysqli_query($this->conexao, "CREATE DATABASE IF NOT EXISTS {$this->banco} CHARACTER SET utf8 COLLATE utf8_general_ci");
-        mysqli_select_db($this->conexao, $this->banco);
-        mysqli_set_charset($this->conexao, 'utf8');
-
-        $this->criarTabelas();
-        $this->criarDadosIniciais();
-
-        return $this->conexao;
-    }
-
-    public function escapar($valor)
-    {
-        return mysqli_real_escape_string($this->conectarBD(), (string)$valor);
+        mysqli_set_charset($conexao, 'utf8');
+        return $conexao;
     }
 
     public function inserirCliente($cliente)
     {
-        $nome = $this->escapar($cliente->getNome());
-        $sobrenome = $this->escapar($cliente->getSobrenome());
-        $cpf = $this->escapar($cliente->getCpf());
-        $dataNascimento = $this->escapar($cliente->getDataNascimento());
-        $telefone = $this->escapar($cliente->getTelefone());
-        $email = $this->escapar($cliente->getEmail());
-        $senha = $this->escapar($cliente->getSenha());
+        $conexao = $this->conectarBD();
+        $nome = mysqli_real_escape_string($conexao, $cliente->get_Nome());
+        $sobrenome = mysqli_real_escape_string($conexao, $cliente->get_Sobrenome());
+        $cpf = mysqli_real_escape_string($conexao, $cliente->get_Cpf());
+        $dataNascimento = mysqli_real_escape_string($conexao, $cliente->get_DataNascimento());
+        $telefone = mysqli_real_escape_string($conexao, $cliente->get_Telefone());
+        $email = mysqli_real_escape_string($conexao, $cliente->get_Email());
+        $senha = mysqli_real_escape_string($conexao, $cliente->get_Senha());
 
-        mysqli_query($this->conectarBD(), "INSERT INTO clientes (nome, sobrenome, cpf, data_nascimento, telefone, email, senha) VALUES ('$nome', '$sobrenome', '$cpf', '$dataNascimento', '$telefone', '$email', '$senha')");
-        mysqli_query($this->conectarBD(), "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', 'cliente')");
+        $consulta = "INSERT INTO clientes (nome, sobrenome, cpf, data_nascimento, telefone, email, senha)
+                     VALUES ('$nome', '$sobrenome', '$cpf', '$dataNascimento', '$telefone', '$email', '$senha')";
+        mysqli_query($conexao, $consulta);
+
+        $consulta = "INSERT INTO usuarios (nome, email, senha, tipo)
+                     VALUES ('$nome', '$email', '$senha', 'cliente')";
+        mysqli_query($conexao, $consulta);
     }
 
     public function inserirFuncionario($funcionario)
     {
-        $nome = $this->escapar($funcionario->getNome());
-        $sobrenome = $this->escapar($funcionario->getSobrenome());
-        $cpf = $this->escapar($funcionario->getCpf());
-        $dataNascimento = $this->escapar($funcionario->getDataNascimento());
-        $telefone = $this->escapar($funcionario->getTelefone());
-        $cargo = $this->escapar($funcionario->getCargo());
-        $salario = $this->escapar($funcionario->getSalario());
-        $email = $this->escapar($funcionario->getEmail());
-        $senha = $this->escapar($funcionario->getSenha());
+        $conexao = $this->conectarBD();
+        $nome = mysqli_real_escape_string($conexao, $funcionario->get_Nome());
+        $sobrenome = mysqli_real_escape_string($conexao, $funcionario->get_Sobrenome());
+        $cpf = mysqli_real_escape_string($conexao, $funcionario->get_Cpf());
+        $dataNascimento = mysqli_real_escape_string($conexao, $funcionario->get_DataNascimento());
+        $telefone = mysqli_real_escape_string($conexao, $funcionario->get_Telefone());
+        $cargo = mysqli_real_escape_string($conexao, $funcionario->get_Cargo());
+        $salario = mysqli_real_escape_string($conexao, $funcionario->get_Salario());
+        $email = mysqli_real_escape_string($conexao, $funcionario->get_Email());
+        $senha = mysqli_real_escape_string($conexao, $funcionario->get_Senha());
 
-        mysqli_query($this->conectarBD(), "INSERT INTO funcionarios (nome, sobrenome, cpf, data_nascimento, telefone, cargo, salario, email, senha) VALUES ('$nome', '$sobrenome', '$cpf', '$dataNascimento', '$telefone', '$cargo', '$salario', '$email', '$senha')");
-        mysqli_query($this->conectarBD(), "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', 'funcionario')");
+        $consulta = "INSERT INTO funcionarios (nome, sobrenome, cpf, data_nascimento, telefone, cargo, salario, email, senha)
+                     VALUES ('$nome', '$sobrenome', '$cpf', '$dataNascimento', '$telefone', '$cargo', '$salario', '$email', '$senha')";
+        mysqli_query($conexao, $consulta);
+
+        $consulta = "INSERT INTO usuarios (nome, email, senha, tipo)
+                     VALUES ('$nome', '$email', '$senha', 'funcionario')";
+        mysqli_query($conexao, $consulta);
     }
 
     public function inserirProduto($produto)
     {
-        $nome = $this->escapar($produto->getNome());
-        $marca = $this->escapar($produto->getMarca());
-        $descricao = $this->escapar($produto->getDescricao());
-        $valor = $this->escapar($produto->getValor());
-        $quantidade = $this->escapar($produto->getQuantidade());
-        $imagem = $this->escapar($produto->getImagem());
+        $conexao = $this->conectarBD();
+        $nome = mysqli_real_escape_string($conexao, $produto->get_Nome());
+        $marca = mysqli_real_escape_string($conexao, $produto->get_Marca());
+        $descricao = mysqli_real_escape_string($conexao, $produto->get_Descricao());
+        $valor = mysqli_real_escape_string($conexao, $produto->get_Valor());
+        $quantidade = mysqli_real_escape_string($conexao, $produto->get_Quantidade());
+        $imagem = mysqli_real_escape_string($conexao, $produto->get_Imagem());
 
-        mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('$nome', '$marca', '$descricao', '$valor', '$quantidade', '$imagem')");
+        $consulta = "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem)
+                     VALUES ('$nome', '$marca', '$descricao', '$valor', '$quantidade', '$imagem')";
+        mysqli_query($conexao, $consulta);
     }
 
     public function inserirLoja($loja)
     {
-        $nome = $this->escapar($loja->getNome());
-        $cnpj = $this->escapar($loja->getCnpj());
-        $endereco = $this->escapar($loja->getEndereco());
-        $telefone = $this->escapar($loja->getTelefone());
+        $conexao = $this->conectarBD();
+        $nome = mysqli_real_escape_string($conexao, $loja->get_Nome());
+        $cnpj = mysqli_real_escape_string($conexao, $loja->get_Cnpj());
+        $endereco = mysqli_real_escape_string($conexao, $loja->get_Endereco());
+        $telefone = mysqli_real_escape_string($conexao, $loja->get_Telefone());
 
-        mysqli_query($this->conectarBD(), "INSERT INTO lojas (nome, cnpj, endereco, telefone) VALUES ('$nome', '$cnpj', '$endereco', '$telefone')");
+        $consulta = "INSERT INTO lojas (nome, cnpj, endereco, telefone)
+                     VALUES ('$nome', '$cnpj', '$endereco', '$telefone')";
+        mysqli_query($conexao, $consulta);
     }
 
     public function inserirCupom($cupom)
     {
-        $codigo = $this->escapar($cupom->getCodigo());
-        $descricao = $this->escapar($cupom->getDescricao());
-        $desconto = $this->escapar($cupom->getDesconto());
-        $validade = $this->escapar($cupom->getValidade());
+        $conexao = $this->conectarBD();
+        $codigo = mysqli_real_escape_string($conexao, $cupom->get_Codigo());
+        $descricao = mysqli_real_escape_string($conexao, $cupom->get_Descricao());
+        $desconto = mysqli_real_escape_string($conexao, $cupom->get_Desconto());
+        $validade = mysqli_real_escape_string($conexao, $cupom->get_Validade());
 
-        mysqli_query($this->conectarBD(), "INSERT INTO cupons (codigo, descricao, desconto, validade) VALUES ('$codigo', '$descricao', '$desconto', '$validade')");
+        $consulta = "INSERT INTO cupons (codigo, descricao, desconto, validade)
+                     VALUES ('$codigo', '$descricao', '$desconto', '$validade')";
+        mysqli_query($conexao, $consulta);
     }
 
-    public function retornarRegistros($tabela)
+    public function retornarClientes()
     {
-        $permitidas = array('clientes', 'funcionarios', 'produtos', 'lojas', 'cupons');
+        $conexao = $this->conectarBD();
+        return mysqli_query($conexao, 'SELECT * FROM clientes ORDER BY id DESC');
+    }
 
-        if (!in_array($tabela, $permitidas)) {
-            return array();
-        }
-
-        $resultado = mysqli_query($this->conectarBD(), "SELECT * FROM $tabela ORDER BY id DESC");
-        return $this->resultadoParaArray($resultado);
+    public function retornarFuncionarios()
+    {
+        $conexao = $this->conectarBD();
+        return mysqli_query($conexao, 'SELECT * FROM funcionarios ORDER BY id DESC');
     }
 
     public function retornarProdutos()
     {
-        return $this->retornarRegistros('produtos');
+        $conexao = $this->conectarBD();
+        return mysqli_query($conexao, 'SELECT * FROM produtos ORDER BY id DESC');
+    }
+
+    public function retornarLojas()
+    {
+        $conexao = $this->conectarBD();
+        return mysqli_query($conexao, 'SELECT * FROM lojas ORDER BY id DESC');
+    }
+
+    public function retornarCupons()
+    {
+        $conexao = $this->conectarBD();
+        return mysqli_query($conexao, 'SELECT * FROM cupons ORDER BY id DESC');
     }
 
     public function retornarProdutoPorId($id)
     {
+        $conexao = $this->conectarBD();
         $id = (int)$id;
-        $resultado = mysqli_query($this->conectarBD(), "SELECT * FROM produtos WHERE id = $id");
-
-        if ($resultado) {
-            return mysqli_fetch_assoc($resultado);
-        }
-
-        return null;
+        $resultado = mysqli_query($conexao, "SELECT * FROM produtos WHERE id = $id");
+        return mysqli_fetch_assoc($resultado);
     }
 
     public function autenticarUsuario($email, $senha)
     {
-        $email = $this->escapar($email);
-        $senha = $this->escapar($senha);
-        $resultado = mysqli_query($this->conectarBD(), "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
-
-        if ($resultado && mysqli_num_rows($resultado) > 0) {
-            return mysqli_fetch_assoc($resultado);
-        }
-
-        return null;
+        $conexao = $this->conectarBD();
+        $email = mysqli_real_escape_string($conexao, $email);
+        $senha = mysqli_real_escape_string($conexao, $senha);
+        $resultado = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+        return mysqli_fetch_assoc($resultado);
     }
 
     public function redefinirSenha($email, $senha)
     {
-        $email = $this->escapar($email);
-        $senha = $this->escapar($senha);
-        mysqli_query($this->conectarBD(), "UPDATE usuarios SET senha = '$senha' WHERE email = '$email'");
-        return mysqli_affected_rows($this->conectarBD()) > 0;
-    }
-
-    private function resultadoParaArray($resultado)
-    {
-        $dados = array();
-
-        if ($resultado) {
-            while ($linha = mysqli_fetch_assoc($resultado)) {
-                $dados[] = $linha;
-            }
-        }
-
-        return $dados;
-    }
-
-    private function criarTabelas()
-    {
         $conexao = $this->conectarBD();
-
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS usuarios (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(120) NOT NULL, email VARCHAR(160) NOT NULL UNIQUE, senha VARCHAR(100) NOT NULL, tipo VARCHAR(30) NOT NULL DEFAULT 'cliente')");
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS clientes (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(80) NOT NULL, sobrenome VARCHAR(80) NOT NULL, cpf VARCHAR(20) NOT NULL, data_nascimento DATE NOT NULL, telefone VARCHAR(30) NOT NULL, email VARCHAR(160) NOT NULL UNIQUE, senha VARCHAR(100) NOT NULL, foto VARCHAR(255))");
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS funcionarios (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(80) NOT NULL, sobrenome VARCHAR(80) NOT NULL, cpf VARCHAR(20) NOT NULL, data_nascimento DATE NOT NULL, telefone VARCHAR(30) NOT NULL, cargo VARCHAR(90) NOT NULL, salario DECIMAL(10,2) NOT NULL, email VARCHAR(160) NOT NULL UNIQUE, senha VARCHAR(100) NOT NULL, foto VARCHAR(255))");
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS produtos (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(160) NOT NULL, marca VARCHAR(120) NOT NULL, descricao TEXT NOT NULL, valor DECIMAL(10,2) NOT NULL, quantidade INT NOT NULL, imagem VARCHAR(255) NOT NULL DEFAULT 'img/produto1.png')");
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS lojas (id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(140) NOT NULL, cnpj VARCHAR(30) NOT NULL, endereco VARCHAR(180) NOT NULL, telefone VARCHAR(30) NOT NULL)");
-        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS cupons (id INT AUTO_INCREMENT PRIMARY KEY, codigo VARCHAR(40) NOT NULL UNIQUE, descricao VARCHAR(180) NOT NULL, desconto DECIMAL(5,2) NOT NULL, validade DATE NOT NULL)");
-
-        $this->adicionarColunaSeFaltar('usuarios', 'senha', "ALTER TABLE usuarios ADD senha VARCHAR(100) NOT NULL DEFAULT '123456'");
-        $this->adicionarColunaSeFaltar('clientes', 'senha', "ALTER TABLE clientes ADD senha VARCHAR(100) NOT NULL DEFAULT '123456'");
-        $this->adicionarColunaSeFaltar('funcionarios', 'senha', "ALTER TABLE funcionarios ADD senha VARCHAR(100) NOT NULL DEFAULT '123456'");
-        $this->deixarSenhaHashAntigaNula('usuarios');
-        $this->deixarSenhaHashAntigaNula('clientes');
-        $this->deixarSenhaHashAntigaNula('funcionarios');
+        $email = mysqli_real_escape_string($conexao, $email);
+        $senha = mysqli_real_escape_string($conexao, $senha);
+        mysqli_query($conexao, "UPDATE usuarios SET senha = '$senha' WHERE email = '$email'");
+        return mysqli_affected_rows($conexao) > 0;
     }
-
-    private function adicionarColunaSeFaltar($tabela, $coluna, $sql)
-    {
-        $resultado = mysqli_query($this->conectarBD(), "SHOW COLUMNS FROM $tabela LIKE '$coluna'");
-
-        if ($resultado && mysqli_num_rows($resultado) == 0) {
-            mysqli_query($this->conectarBD(), $sql);
-        }
-    }
-
-    private function deixarSenhaHashAntigaNula($tabela)
-    {
-        $resultado = mysqli_query($this->conectarBD(), "SHOW COLUMNS FROM $tabela LIKE 'senha_hash'");
-
-        if ($resultado && mysqli_num_rows($resultado) > 0) {
-            mysqli_query($this->conectarBD(), "ALTER TABLE $tabela MODIFY senha_hash VARCHAR(255) NULL");
-        }
-    }
-
-    private function criarDadosIniciais()
-    {
-        $resultado = mysqli_query($this->conectarBD(), "SELECT COUNT(*) AS total FROM usuarios");
-        $linha = mysqli_fetch_assoc($resultado);
-
-        if ((int)$linha['total'] == 0) {
-            mysqli_query($this->conectarBD(), "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('Administrador Xhopii', 'admin@xhopii.com', '123456', 'funcionario')");
-        } else {
-            mysqli_query($this->conectarBD(), "UPDATE usuarios SET senha = '123456' WHERE email = 'admin@xhopii.com'");
-        }
-
-        $resultado = mysqli_query($this->conectarBD(), "SELECT COUNT(*) AS total FROM produtos");
-        $linha = mysqli_fetch_assoc($resultado);
-
-        if ((int)$linha['total'] == 0) {
-            mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto1.png')");
-            mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto2.png')");
-            mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto3.png')");
-            mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto4.png')");
-            mysqli_query($this->conectarBD(), "INSERT INTO produtos (nome, marca, descricao, valor, quantidade, imagem) VALUES ('Camisa Desenvolvedor Front-End CSS', 'Eletiva Uniformes', 'Uma Camisa ideal para programar por mais de 12 horas', 59.90, 171, 'img/produto5.png')");
-        }
-    }
-}
-
-function conectarBanco()
-{
-    static $bancoDeDados = null;
-
-    if ($bancoDeDados == null) {
-        $bancoDeDados = new BancoDeDados();
-    }
-
-    return $bancoDeDados->conectarBD();
 }
 
 ?>

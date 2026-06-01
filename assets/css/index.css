@@ -121,6 +121,15 @@ header p
     padding: 10px;
 }
 
+.imagem img
+{
+    width: 100%;
+    max-width: 962px;
+    height: auto;
+    margin: 0;
+    display: block;
+}
+
 .descobertas
 {
     max-width: 1200px;
@@ -363,6 +372,13 @@ header .super-aba a:hover
 
 header .super-aba
 {
+    min-height: 54px;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+header .super-aba
+{
     justify-content: center;
     gap: 38px;
     margin-right: 0;
@@ -380,6 +396,85 @@ header .super-aba a
 {
     color: rgb(255, 255, 255);
     text-decoration: none;
+}
+
+/* Carrossel local com a mesma estrutura visual do exemplo. */
+.carousel
+{
+    position: relative;
+}
+
+.carousel-inner
+{
+    position: relative;
+    height: 260px;
+}
+
+.carousel-item
+{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .45s ease;
+}
+
+.carousel-item.active
+{
+    opacity: 1;
+}
+
+.carousel-indicators
+{
+    position: absolute;
+    z-index: 2;
+    bottom: 12px;
+    left: 50%;
+    display: flex;
+    gap: 8px;
+    transform: translateX(-50%);
+}
+
+.carousel-indicators button
+{
+    width: 11px;
+    height: 11px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .45);
+    cursor: pointer;
+}
+
+.carousel-indicators button.active
+{
+    background: rgb(225, 96, 61);
+}
+
+.carousel-control-prev,
+.carousel-control-next
+{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    width: 42px;
+    height: 54px;
+    border: 0;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, .28);
+    font-size: 28px;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev { left: 0; }
+.carousel-control-next { right: 0; }
+
+@media (max-width: 576px)
+{
+    .carousel-inner,
+    .carousel-wrapper .carousel-item img
+    {
+        height: 150px;
+    }
 }
 /* Header padrao baseado em view/lojas.php */
 header .cabecalho

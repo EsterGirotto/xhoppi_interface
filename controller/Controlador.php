@@ -13,93 +13,71 @@ require_once __DIR__ . '/../model/Cupom.php';
 
 class Controlador
 {
+    // Atributo
     private $bancoDeDados;
 
+    // Construtor
     public function __construct()
     {
         $this->bancoDeDados = new BancoDeDados('localhost', 'root', '', 'xhopii_integrado');
     }
 
-    public function getBancoDeDados()
+    public function cadastrarCliente($nome, $sobrenome, $cpf, $dataNascimento, $telefone, $email, $senha)
     {
-        return $this->bancoDeDados;
-    }
-
-    public function cadastrarCliente($dados)
-    {
-        $cliente = new Cliente(
-            $dados['nome'],
-            $dados['sobrenome'],
-            $dados['cpf'],
-            $dados['data_nascimento'],
-            $dados['telefone'],
-            $dados['email'],
-            $dados['senha']
-        );
-
+        $cliente = new Cliente($nome, $sobrenome, $cpf, $dataNascimento, $telefone, $email, $senha);
         $this->bancoDeDados->inserirCliente($cliente);
     }
 
-    public function cadastrarFuncionario($dados)
+    public function cadastrarFuncionario($nome, $sobrenome, $cpf, $dataNascimento, $telefone, $email, $senha, $cargo, $salario)
     {
-        $funcionario = new Funcionario(
-            $dados['nome'],
-            $dados['sobrenome'],
-            $dados['cpf'],
-            $dados['data_nascimento'],
-            $dados['telefone'],
-            $dados['email'],
-            $dados['senha'],
-            $dados['cargo'],
-            $dados['salario']
-        );
-
+        $funcionario = new Funcionario($nome, $sobrenome, $cpf, $dataNascimento, $telefone, $email, $senha, $cargo, $salario);
         $this->bancoDeDados->inserirFuncionario($funcionario);
     }
 
-    public function cadastrarProduto($dados)
+    public function cadastrarProduto($nome, $marca, $descricao, $valor, $quantidade, $imagem)
     {
-        if (!empty($dados['imagem'])) {
-            $imagem = $dados['imagem'];
-        } else {
-            $imagem = 'img/produto1.png';
-        }
-
-        $produto = new Produto(
-            $dados['nome'],
-            $dados['marca'],
-            $dados['descricao'],
-            $dados['valor'],
-            $dados['quantidade'],
-            $imagem
-        );
-
+        $produto = new Produto($nome, $marca, $descricao, $valor, $quantidade, $imagem);
         $this->bancoDeDados->inserirProduto($produto);
     }
 
-    public function cadastrarLoja($dados)
+    public function cadastrarLoja($nome, $cnpj, $endereco, $telefone)
     {
-        $loja = new Loja($dados['nome'], $dados['cnpj'], $dados['endereco'], $dados['telefone']);
+        $loja = new Loja($nome, $cnpj, $endereco, $telefone);
         $this->bancoDeDados->inserirLoja($loja);
     }
 
-    public function cadastrarCupom($dados)
+    public function cadastrarCupom($codigo, $descricao, $desconto, $validade)
     {
-        $cupom = new Cupom($dados['codigo'], $dados['descricao'], $dados['desconto'], $dados['validade']);
+        $cupom = new Cupom($codigo, $descricao, $desconto, $validade);
         $this->bancoDeDados->inserirCupom($cupom);
     }
 
-    public function listarRegistros($tabela)
+    public function visualizarClientes()
     {
-        return $this->bancoDeDados->retornarRegistros($tabela);
+        return $this->bancoDeDados->retornarClientes();
     }
 
-    public function listarProdutos()
+    public function visualizarFuncionarios()
+    {
+        return $this->bancoDeDados->retornarFuncionarios();
+    }
+
+    public function visualizarProdutos()
     {
         return $this->bancoDeDados->retornarProdutos();
     }
 
-    public function buscarProduto($id)
+    public function visualizarLojas()
+    {
+        return $this->bancoDeDados->retornarLojas();
+    }
+
+    public function visualizarCupons()
+    {
+        return $this->bancoDeDados->retornarCupons();
+    }
+
+    public function visualizarProduto($id)
     {
         return $this->bancoDeDados->retornarProdutoPorId($id);
     }
@@ -129,22 +107,6 @@ class Controlador
             exit;
         }
     }
-}
-
-function appControlador()
-{
-    static $controlador = null;
-
-    if ($controlador == null) {
-        $controlador = new Controlador();
-    }
-
-    return $controlador;
-}
-
-function limpar($valor)
-{
-    return mysqli_real_escape_string(conectarBanco(), (string)$valor);
 }
 
 ?>

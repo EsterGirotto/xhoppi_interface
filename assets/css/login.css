@@ -195,6 +195,12 @@ header p
     margin-top: -10px;    
 }
 
+.mensagem-erro
+{
+    color: rgb(225, 96, 61);
+    text-align: center;
+}
+
 
 footer
 {

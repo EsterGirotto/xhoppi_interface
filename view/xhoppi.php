@@ -3,94 +3,39 @@ require_once __DIR__ . '/../controller/Controlador.php';
 require_once __DIR__ . '/funcoes.php';
 $controlador = new Controlador();
 $controlador->exigirLogin();
-
-if (isset($_GET['id'])) {
-    $idProduto = $_GET['id'];
-} else {
-    $idProduto = 1;
-}
-
-$produto = $controlador->buscarProduto((int)$idProduto);
-$todos = $controlador->listarProdutos();
-
+$produto = $controlador->visualizarProduto(isset($_GET['id']) ? (int)$_GET['id'] : 1);
 if (!$produto) {
-    if (count($todos) > 0) {
-        $produto = $todos[0];
-    } else {
-        $produto = null;
+    $produtos = $controlador->visualizarProdutos();
+    $produto = mysqli_fetch_assoc($produtos);
+
+    if (!$produto) {
+        $produto = array('imagem' => 'img/produto1.png', 'nome' => 'Produto nao encontrado', 'valor' => 0, 'quantidade' => 0);
     }
 }
-
-if ($produto) {
-    $imagemProduto = $produto['imagem'];
-    $nomeProduto = $produto['nome'];
-    $valorProduto = $produto['valor'];
-    $quantidadeProduto = $produto['quantidade'];
-} else {
-    $imagemProduto = 'img/produto1.png';
-    $nomeProduto = 'Produto não encontrado';
-    $valorProduto = 0;
-    $quantidadeProduto = 0;
-}
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>xhoppi.com</title>
-    <link rel="stylesheet" href="../assets/css/xhoppi.css">
-</head>
+<head><meta charset="UTF-8"><title>Xhopii - Produto</title><link rel="stylesheet" href="../assets/css/xhoppi.css"></head>
 <body>
-    <header>
-        <section class="cabecalho">
-            <section class="cabecalho-logo">
-                <img src="../assets/img/logo.png">
-                <h1>Xhopii</h1>
-            </section>
-        </section>
-        <section class="super-aba"><?php echo menuPrincipal(); ?></section>
-    </header>
-
-    <footer>
-        <section class="roupas">
-            <div class="roupas-pequenas">
-                <img src="../assets/img/produto1.png">
-                <img src="../assets/img/produto2.png">
-                <img src="../assets/img/produto3.png">
-                <img src="../assets/img/produto4.png">
-                <img src="../assets/img/produto5.png">
-            </div>
-
-            <div class="roupa-grande">
-                <img src="<?php echo h(caminhoImagem($imagemProduto)); ?>">
-            </div>
-
-            <div class="infos">
-                <h2><?php echo h($nomeProduto); ?></h2>
-                <h3><?php echo dinheiro($valorProduto); ?></h3>
-                <p><?php echo (int)$quantidadeProduto; ?> Peças Disponíveis</p>
-
-                <p class="label">Modelos:</p>
-                <div class="opcoes">
-                    <button>Preto</button>
-                    <button>Azul</button>
-                    <button>Verde</button>
-                    <button>Cinza</button>
-                    <button>Rosa</button>
-                </div>
-
-                <p class="label">Tamanhos:</p>
-                <div class="opcoes">
-                    <button>P</button>
-                    <button>M</button>
-                    <button>G</button>
-                    <button>GG</button>
-                </div>
-
-                <p>Tamanho Selecionado: P</p>
-                <button class="comprar">Comprar Agora</button>
-            </div>
-        </section>
-    </footer>
+  <?php echo cabecalhoPrincipal() ?>
+  <footer>
+    <section class="roupas">
+      <div class="roupas-pequenas">
+        <img src="../assets/img/produto1.png"><img src="../assets/img/produto2.png"><img src="../assets/img/produto3.png"><img src="../assets/img/produto4.png"><img src="../assets/img/produto5.png">
+      </div>
+      <div class="roupa-grande"><img src="<?php echo h(caminhoImagem($produto['imagem'])) ?>"></div>
+      <div class="infos">
+        <h2><?php echo h($produto['nome']) ?></h2>
+        <h3><?php echo dinheiro($produto['valor']) ?></h3>
+        <p><?php echo (int)$produto['quantidade'] ?> Pecas Disponiveis</p>
+        <p class="label">Modelos:</p>
+        <div class="opcoes"><button>Preto</button><button>Azul</button><button>Verde</button><button>Cinza</button><button>Rosa</button></div>
+        <p class="label">Tamanhos:</p>
+        <div class="opcoes"><button>P</button><button>M</button><button>G</button><button>GG</button></div>
+        <p>Tamanho Selecionado: P</p>
+        <button class="comprar">Comprar Agora</button>
+      </div>
+    </section>
+  </footer>
 </body>
 </html>
