@@ -108,6 +108,35 @@ if (isset($_POST['inputNomeLoja']) && isset($_POST['inputCnpjLoja']) &&
     die();
 }
 
+// Edicao e exclusao de Cupom
+if (isset($_POST['acaoCupom']) && $_POST['acaoCupom'] == 'editar' &&
+    isset($_POST['inputIdCupom']) && isset($_POST['inputCodigoCupom']) &&
+    isset($_POST['inputDescricaoCupom']) && isset($_POST['inputDescontoCupom']) &&
+    isset($_POST['inputValidadeCupom'])) {
+
+    $id = $_POST['inputIdCupom'];
+    $codigo = $_POST['inputCodigoCupom'];
+    $descricao = $_POST['inputDescricaoCupom'];
+    $desconto = $_POST['inputDescontoCupom'];
+    $validade = $_POST['inputValidadeCupom'];
+
+    $controlador->editarCupom($id, $codigo, $descricao, $desconto, $validade);
+
+    header('Location:../view/cupons.php?mensagem=editado');
+    die();
+}
+
+if (isset($_POST['acaoCupom']) && $_POST['acaoCupom'] == 'excluir' &&
+    isset($_POST['inputIdCupom'])) {
+
+    $id = $_POST['inputIdCupom'];
+
+    $controlador->excluirCupom($id);
+
+    header('Location:../view/cupons.php?mensagem=excluido');
+    die();
+}
+
 // Cadastro de Cupom
 if (isset($_POST['inputCodigoCupom']) && isset($_POST['inputDescricaoCupom']) &&
     isset($_POST['inputDescontoCupom']) && isset($_POST['inputValidadeCupom'])) {

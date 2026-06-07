@@ -373,6 +373,49 @@ header .super-aba a:hover
     text-transform: uppercase;
 }
 
+.tabela-dados input
+{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.acoes-cupom
+{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.botao-cupom
+{
+    border: 0;
+    border-radius: 5px;
+    background-color: rgb(225, 96, 61);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 9px 12px;
+}
+
+.botao-cupom.excluir
+{
+    background-color: rgb(175, 45, 45);
+}
+
+.mensagem-ok
+{
+    display: block;
+    color: rgb(33, 135, 74);
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
 header .super-aba
 {
     min-height: 54px;

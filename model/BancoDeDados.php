@@ -110,6 +110,28 @@ class BancoDeDados
         mysqli_query($conexao, $consulta);
     }
 
+    public function alterarCupom($id, $cupom)
+    {
+        $conexao = $this->conectarBD();
+        $id = (int)$id;
+        $codigo = mysqli_real_escape_string($conexao, $cupom->get_Codigo());
+        $descricao = mysqli_real_escape_string($conexao, $cupom->get_Descricao());
+        $desconto = mysqli_real_escape_string($conexao, $cupom->get_Desconto());
+        $validade = mysqli_real_escape_string($conexao, $cupom->get_Validade());
+
+        $consulta = "UPDATE cupons
+                     SET codigo = '$codigo', descricao = '$descricao', desconto = '$desconto', validade = '$validade'
+                     WHERE id = $id";
+        return mysqli_query($conexao, $consulta);
+    }
+
+    public function excluirCupom($id)
+    {
+        $conexao = $this->conectarBD();
+        $id = (int)$id;
+        return mysqli_query($conexao, "DELETE FROM cupons WHERE id = $id");
+    }
+
     public function retornarClientes()
     {
         $conexao = $this->conectarBD();

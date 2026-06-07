@@ -11,10 +11,7 @@ class Cupom
     // Construtor
     public function __construct($Codigo, $Descricao, $Desconto, $Validade)
     {
-        $this->codigo = $Codigo;
-        $this->descricao = $Descricao;
-        $this->desconto = $Desconto;
-        $this->validade = $Validade;
+        $this->editarCupom($Codigo, $Descricao, $Desconto, $Validade);
     }
 
     // Getter e Setter
@@ -28,6 +25,14 @@ class Cupom
     public function set_Validade($Validade) { $this->validade = $Validade; }
 
     // Metodos
+    public function editarCupom($NovoCodigo, $NovaDescricao, $NovoDesconto, $NovaValidade)
+    {
+        $this->codigo = $NovoCodigo;
+        $this->descricao = $NovaDescricao;
+        $this->desconto = $NovoDesconto;
+        $this->validade = $NovaValidade;
+    }
+
     public function alterarDesconto($NovoDesconto)
     {
         $this->desconto = $NovoDesconto;

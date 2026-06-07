@@ -52,6 +52,17 @@ class Controlador
         $this->bancoDeDados->inserirCupom($cupom);
     }
 
+    public function editarCupom($id, $codigo, $descricao, $desconto, $validade)
+    {
+        $cupom = new Cupom($codigo, $descricao, $desconto, $validade);
+        return $this->bancoDeDados->alterarCupom($id, $cupom);
+    }
+
+    public function excluirCupom($id)
+    {
+        return $this->bancoDeDados->excluirCupom($id);
+    }
+
     public function visualizarClientes()
     {
         return $this->bancoDeDados->retornarClientes();
