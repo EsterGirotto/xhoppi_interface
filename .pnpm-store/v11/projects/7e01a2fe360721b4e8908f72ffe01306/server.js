@@ -1,0 +1,10 @@
+import 'dotenv/config';
+import { fileURLToPath } from 'node:url';
+import { Banco } from './repositories/Banco.js';
+import { criarApp } from './app.js';
+const banco = new Banco({ diretorio: fileURLToPath(new URL('./data/', import.meta.url)), mongoUri: process.env.MONGODB_URI, database: process.env.MONGODB_DATABASE });
+await banco.iniciar();
+const port = Number(process.env.PORT || 3000);
+const host = process.env.HOST || '127.0.0.1';
+const servidor = criarApp(banco).listen(port, host, () => console.log(`Xhopii disponível em http://${host}:${port} (${process.env.MONGODB_URI ? 'MongoDB' : 'JSON'})`));
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => servidor.close(async () => { await banco.fechar(); process.exit(0); }));

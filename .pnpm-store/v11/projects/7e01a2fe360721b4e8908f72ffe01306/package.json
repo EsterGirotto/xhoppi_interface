@@ -1,0 +1,31 @@
+{
+  "name": "xhopii",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Xhopii acadêmico com Express, ES6, POO e persistência JSON ou MongoDB",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "dotenv": "^17.3.1",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "mongodb": "^6.21.0",
+    "morgan": "^1.10.1"
+  },
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
+}
